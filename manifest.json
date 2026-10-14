@@ -1,0 +1,16 @@
+{
+  "name": "Professional Profile Viewer",
+  "short_name": "Profile",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#050507",
+  "theme_color": "#050507",
+  "icons": [
+    {
+      "src": "og.jpg",
+      "sizes": "513x513",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
