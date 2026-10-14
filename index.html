@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>عرض البروفايل الاحترافي</title>
+    <title>شركة الراجحي والمسفر الزراعية</title>
     
     <!-- Open Graph (OG) Tags لتحسين الظهور على واتساب وسوشيال ميديا -->
-    <meta property="og:title" content="بروفايل شركة شدو ديزاين">
-    <meta property="og:description" content="عرض تفاعلي لسابقة أعمالنا وتصاميمنا الإبداعية">
+    <meta property="og:title" content="شركة الراجحي والمسفر الزراعية">
+    <meta property="og:description" content="الملف التعريفي لشركة الراجحي والمسفر الزراعية">
     <meta property="og:image" content="https://shadowdesign.sa/og.jpg">
-    <meta property="og:image:alt" content="شعار شركة شدو ديزاين">
+    <meta property="og:image:alt" content="شركة الراجحي والمسفر الزراعية">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="513">
     <meta property="og:image:height" content="513">
     <meta property="og:url" content="https://shadowdesign.sa/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="بروفايل شركة شدو ديزاين">
-    <meta name="twitter:description" content="عرض تفاعلي لسابقة أعمالنا وتصاميمنا الإبداعية">
+    <meta name="twitter:title" content="شركة الراجحي والمسفر الزراعية">
+    <meta name="twitter:description" content="الملف التعريفي لشركة الراجحي والمسفر الزراعية">
     <meta name="twitter:image" content="https://shadowdesign.sa/og.jpg">
     
     <link rel="manifest" href="manifest.json">
@@ -571,6 +571,10 @@
             clearTimeout(autoFlipTimer);
             if (!document.getElementById('autoFlipSwitch').checked || isRewinding) return;
             autoFlipTimer = setTimeout(() => {
+                if (currentPage >= config.totalImages) {
+                    rewindToFirstPage();
+                    return;
+                }
                 flipNextPage();
                 startAutoLoop();
             }, config.autoFlipDelay);
