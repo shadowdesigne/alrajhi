@@ -5,20 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>شركة الراجحي والمسفر الزراعية</title>
     
-    <!-- Open Graph (OG) Tags لتحسين الظهور على واتساب وسوشيال ميديا -->
+    <!-- Open Graph (OG) Tags -->
     <meta property="og:title" content="شركة الراجحي والمسفر الزراعية">
     <meta property="og:description" content="الملف التعريفي لشركة الراجحي والمسفر الزراعية">
     <meta property="og:image" content="https://shadowdesigne.github.io/alrajhi/og.jpg">
-    <meta property="og:image:alt" content="شركة الراجحي والمسفر الزراعية">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="513">
-    <meta property="og:image:height" content="513">
     <meta property="og:url" content="https://shadowdesigne.github.io/alrajhi/">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="شركة الراجحي والمسفر الزراعية">
-    <meta name="twitter:description" content="الملف التعريفي لشركة الراجحي والمسفر الزراعية">
-    <meta name="twitter:image" content="https://shadowdesigne.github.io/alrajhi/og.jpg">
     
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/jpeg" href="og.jpg">
@@ -47,14 +39,13 @@
             height: 100vh;
             height: 100dvh;
             overflow: hidden;
-            background: #000000; /* أسود داكن سادة */
+            background: #000000; 
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: none; /* إخفاء الماوس الافتراضي */
+            cursor: none; 
         }
 
-        /* مؤشر الماوس المخصص */
         #custom-cursor {
             position: fixed;
             width: 12px;
@@ -63,26 +54,9 @@
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
-            mix-blend-mode: difference; /* يجعل اللون يتغير حسب الخلفية لضمان الرؤية */
+            mix-blend-mode: difference;
             transition: transform 0.1s ease-out;
             transform: translate(-50%, -50%);
-        }
-
-        .footer {
-            position: fixed;
-            bottom: 2vh;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            z-index: 1000;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.3);
-            pointer-events: auto;
-        }
-        .footer a {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-weight: bold;
         }
 
         .settings-toggle {
@@ -100,7 +74,9 @@
             z-index: 2000;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             pointer-events: auto;
+            opacity: 0.3;
         }
+        .settings-toggle:hover { opacity: 1; }
         .settings-toggle svg { width: 20px; height: 20px; fill: #000; }
 
         .settings-panel {
@@ -122,7 +98,34 @@
         .settings-panel.active { bottom: 0; }
         .setting-item { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
 
-        /* تحسين أزرار التنقل (Glassmorphism Premium) */
+        /* Style for the switch (checkbox) */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px; width: 14px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: #2196F3; }
+        input:checked + .slider:before { transform: translateX(20px); }
+
         .nav-controls {
             position: fixed;
             top: 0;
@@ -190,9 +193,8 @@
             border-radius: 0;
             overflow: hidden;
             background: #fff;
-            box-shadow: none;
         }
-        .page-face img { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; }
+        .page-face img { width: 100%; height: 100%; object-fit: fill; display: block; pointer-events: none; }
         .page-face.back {
             transform: rotateY(180deg);
             background: linear-gradient(90deg, rgba(0,0,0,0.12), transparent 14%), #f8f7f3;
@@ -231,106 +233,37 @@
             82% { transform: rotateY(-22deg); }
             100% { transform: rotateY(0deg); }
         }
-        @keyframes classicFlip {
-            from { transform: rotateY(0); }
-            to { transform: rotateY(-180deg); }
-        }
-        @keyframes classicFlipBack {
-            from { transform: rotateY(-180deg); }
-            to { transform: rotateY(0); }
-        }
-        @keyframes slideFlip {
-            from { transform: translateX(0) rotateY(0); opacity: 1; }
-            to { transform: translateX(-100%) rotateY(-8deg); opacity: 0; }
-        }
-        @keyframes slideFlipBack {
-            from { transform: translateX(-100%) rotateY(-8deg); opacity: 0; }
-            to { transform: translateX(0) rotateY(0); opacity: 1; }
-        }
-        @keyframes fadeFlip {
-            from { transform: scale(1); opacity: 1; }
-            to { transform: scale(0.97); opacity: 0; }
-        }
-        @keyframes fadeFlipBack {
-            from { transform: scale(0.97); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        @keyframes quickFlip {
-            0% { transform: rotateY(0); }
-            65% { transform: rotateY(-195deg); }
-            100% { transform: rotateY(-180deg); }
-        }
-        @keyframes quickFlipBack {
-            0% { transform: rotateY(-180deg); }
-            35% { transform: rotateY(15deg); }
-            100% { transform: rotateY(0); }
-        }
+        @keyframes classicFlip { from { transform: rotateY(0); } to { transform: rotateY(-180deg); } }
+        @keyframes classicFlipBack { from { transform: rotateY(-180deg); } to { transform: rotateY(0); } }
+        @keyframes slideFlip { from { transform: translateX(0) rotateY(0); opacity: 1; } to { transform: translateX(-100%) rotateY(-8deg); opacity: 0; } }
+        @keyframes slideFlipBack { from { transform: translateX(-100%) rotateY(-8deg); opacity: 0; } to { transform: translateX(0) rotateY(0); opacity: 1; } }
+        @keyframes fadeFlip { from { transform: scale(1); opacity: 1; } to { transform: scale(0.97); opacity: 0; } }
+        @keyframes fadeFlipBack { from { transform: scale(0.97); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes quickFlip { 0% { transform: rotateY(0); } 65% { transform: rotateY(-195deg); } 100% { transform: rotateY(-180deg); } }
+        @keyframes quickFlipBack { 0% { transform: rotateY(-180deg); } 35% { transform: rotateY(15deg); } 100% { transform: rotateY(0); } }
 
-        .page.flipping,
-        .page.flipping-back,
-        .page.rewinding {
-            animation-fill-mode: forwards;
-            backface-visibility: visible;
-        }
-        .page.flipping .curl-lighting,
-        .page.flipping-back .curl-lighting {
-            animation: curlLight var(--flip-duration, 1.2s) ease-in-out forwards;
-        }
-        @keyframes curlLight {
-            0%, 100% { opacity: 0; }
-            38%, 62% { opacity: 0.8; }
-        }
-        #myBook[data-flip-style="realistic"] .page.flipping {
-            animation: realisticFlip var(--flip-duration, 1.2s) cubic-bezier(0.42, 0, 0.18, 1) forwards;
-        }
-        #myBook[data-flip-style="realistic"] .page.flipping-back {
-            animation: realisticFlipBack var(--flip-duration, 1.2s) cubic-bezier(0.42, 0, 0.18, 1) forwards;
-        }
-        #myBook[data-flip-style="classic"] .page.flipping {
-            animation: classicFlip var(--flip-duration, 1s) cubic-bezier(0.55, 0.08, 0.25, 1) forwards;
-        }
-        #myBook[data-flip-style="classic"] .page.flipping-back {
-            animation: classicFlipBack var(--flip-duration, 1s) cubic-bezier(0.55, 0.08, 0.25, 1) forwards;
-        }
-        #myBook[data-flip-style="slide"] .page.flipping {
-            animation: slideFlip var(--flip-duration, 0.75s) cubic-bezier(0.22, 0.68, 0, 1) forwards;
-        }
-        #myBook[data-flip-style="slide"] .page.flipping-back {
-            animation: slideFlipBack var(--flip-duration, 0.75s) cubic-bezier(0.22, 0.68, 0, 1) forwards;
-        }
-        #myBook[data-flip-style="fade"] .page.flipping {
-            animation: fadeFlip var(--flip-duration, 0.6s) ease-in-out forwards;
-        }
-        #myBook[data-flip-style="fade"] .page.flipping-back {
-            animation: fadeFlipBack var(--flip-duration, 0.6s) ease-in-out forwards;
-        }
-        #myBook[data-flip-style="quick"] .page.flipping {
-            animation: quickFlip var(--flip-duration, 0.48s) cubic-bezier(0.35, 0, 0.2, 1) forwards;
-        }
-        #myBook[data-flip-style="quick"] .page.flipping-back {
-            animation: quickFlipBack var(--flip-duration, 0.48s) cubic-bezier(0.35, 0, 0.2, 1) forwards;
-        }
+        .page.flipping, .page.flipping-back, .page.rewinding { animation-fill-mode: forwards; backface-visibility: visible; }
+        .page.flipping .curl-lighting, .page.flipping-back .curl-lighting { animation: curlLight var(--flip-duration, 1.2s) ease-in-out forwards; }
+        @keyframes curlLight { 0%, 100% { opacity: 0; } 38%, 62% { opacity: 0.8; } }
+        
+        #myBook[data-flip-style="realistic"] .page.flipping { animation: realisticFlip var(--flip-duration, 1.2s) cubic-bezier(0.42, 0, 0.18, 1) forwards; }
+        #myBook[data-flip-style="realistic"] .page.flipping-back { animation: realisticFlipBack var(--flip-duration, 1.2s) cubic-bezier(0.42, 0, 0.18, 1) forwards; }
+        #myBook[data-flip-style="classic"] .page.flipping { animation: classicFlip var(--flip-duration, 1s) cubic-bezier(0.55, 0.08, 0.25, 1) forwards; }
+        #myBook[data-flip-style="classic"] .page.flipping-back { animation: classicFlipBack var(--flip-duration, 1s) cubic-bezier(0.55, 0.08, 0.25, 1) forwards; }
+        #myBook[data-flip-style="slide"] .page.flipping { animation: slideFlip var(--flip-duration, 0.75s) cubic-bezier(0.22, 0.68, 0, 1) forwards; }
+        #myBook[data-flip-style="slide"] .page.flipping-back { animation: slideFlipBack var(--flip-duration, 0.75s) cubic-bezier(0.22, 0.68, 0, 1) forwards; }
+        #myBook[data-flip-style="fade"] .page.flipping { animation: fadeFlip var(--flip-duration, 0.6s) ease-in-out forwards; }
+        #myBook[data-flip-style="fade"] .page.flipping-back { animation: fadeFlipBack var(--flip-duration, 0.6s) ease-in-out forwards; }
+        #myBook[data-flip-style="quick"] .page.flipping { animation: quickFlip var(--flip-duration, 0.48s) cubic-bezier(0.35, 0, 0.2, 1) forwards; }
+        #myBook[data-flip-style="quick"] .page.flipping-back { animation: quickFlipBack var(--flip-duration, 0.48s) cubic-bezier(0.35, 0, 0.2, 1) forwards; }
+        
         .page.flipped-done { transform: rotateY(-180deg); opacity: 0; pointer-events: none; }
         .page.rewinding { animation: realisticFlipBack 0.32s ease-out forwards; }
 
-        /* سلايدر مخصص */
         input[type="range"] { accent-color: #000; cursor: pointer; }
         .setting-item select {
-            width: 150px;
-            padding: 9px 10px;
-            border: 1px solid rgba(0, 0, 0, 0.14);
-            border-radius: 10px;
-            background: #fff;
-            color: #111;
-            font: inherit;
-            font-size: 13px;
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .page.flipping, .page.flipping-back { animation-duration: 0.25s !important; }
-        }
-        @media (max-width: 600px) {
-            .nav-controls { padding: 0 14px; }
-            .nav-btn { width: 48px; height: 48px; font-size: 22px; }
+            width: 150px; padding: 9px 10px; border: 1px solid rgba(0, 0, 0, 0.14);
+            border-radius: 10px; background: #fff; color: #111; font: inherit; font-size: 13px;
         }
     </style>
 </head>
@@ -338,16 +271,22 @@
 
     <div id="custom-cursor"></div>
 
-    <div class="footer">
-        تصميم وتطوير <a href="https://shadowdesign.sa/" target="_blank">شدو ديزاين</a>
-    </div>
-
     <div class="settings-toggle" onclick="toggleSettings()">
         <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.84,9.48l2.03,1.58C4.84,11.36,4.82,11.68,4.82,12c0,0.32,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z"/></svg>
     </div>
 
     <div class="settings-panel" id="settingsPanel">
         <h3 style="margin-bottom: 20px;">إعدادات العرض</h3>
+        
+        <!-- خيار ملء الشاشة المضاف -->
+        <div class="setting-item">
+            <label>وضع ملء الشاشة</label>
+            <label class="switch">
+                <input type="checkbox" id="fullscreenSwitch" onchange="toggleFullScreen()">
+                <span class="slider"></span>
+            </label>
+        </div>
+
         <div class="setting-item">
             <label>التقليب التلقائي</label>
             <label class="switch">
@@ -381,7 +320,6 @@
     </div>
 
     <script>
-        // التحكم في مؤشر الماوس المخصص
         const cursor = document.getElementById('custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -392,7 +330,7 @@
             totalImages: 30,
             autoFlipDelay: 4000,
             rewindStagger: 60,
-            defaultAspectRatio: 0.707,
+            defaultAspectRatio: 0.707, 
             flipDurations: {
                 realistic: 1200,
                 classic: 1000,
@@ -414,6 +352,33 @@
         function toggleSettings() {
             document.getElementById('settingsPanel').classList.toggle('active');
         }
+
+        // وظيفة ملء الشاشة
+        function toggleFullScreen() {
+            const isChecked = document.getElementById('fullscreenSwitch').checked;
+            if (isChecked) {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(err => {
+                        alert(`خطأ في تفعيل ملء الشاشة: ${err.message}`);
+                        document.getElementById('fullscreenSwitch').checked = false;
+                    });
+                }
+            } else {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // تحديث حالة الزر إذا خرج المستخدم من ملء الشاشة عبر مفتاح Esc
+        document.addEventListener('fullscreenchange', () => {
+            const switchEl = document.getElementById('fullscreenSwitch');
+            if (!document.fullscreenElement) {
+                switchEl.checked = false;
+            } else {
+                switchEl.checked = true;
+            }
+        });
 
         function updateSpeed(val) {
             config.autoFlipDelay = Number.parseInt(val, 10);
@@ -440,12 +405,10 @@
         function adjustBookDimensions() {
             const vw = window.innerWidth;
             const vh = window.innerHeight;
-            const maxAllowedWidth = vw * 0.92;
-            const maxAllowedHeight = vh * 0.85;
-            let finalWidth = maxAllowedWidth;
+            let finalWidth = vw * 0.95; 
             let finalHeight = finalWidth / pageAspectRatio;
-            if (finalHeight > maxAllowedHeight) {
-                finalHeight = maxAllowedHeight;
+            if (finalHeight > vh * 0.9) {
+                finalHeight = vh * 0.9;
                 finalWidth = finalHeight * pageAspectRatio;
             }
             book.style.width = `${Math.round(finalWidth)}px`;
