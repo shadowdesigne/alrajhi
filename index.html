@@ -21,8 +21,6 @@
         :root {
             --primary-color: #ffffff;
             --accent-color: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
         }
 
         * {
@@ -59,38 +57,39 @@
             transform: translate(-50%, -50%);
         }
 
+        /* زر الإعدادات - تم إلغاء الجلاس */
         .settings-toggle {
             position: fixed;
             bottom: 30px;
             right: 20px;
-            width: 40px;
-            height: 40px;
-            background: white;
+            width: 45px;
+            height: 45px;
+            background: #ffffff; /* لون صلب */
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             z-index: 2000;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.2s ease;
             pointer-events: auto;
-            opacity: 0.3;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
-        .settings-toggle:hover { opacity: 1; }
-        .settings-toggle svg { width: 20px; height: 20px; fill: #000; }
+        .settings-toggle:active { transform: scale(0.9); }
+        .settings-toggle svg { width: 22px; height: 22px; fill: #000; }
 
+        /* لوحة الإعدادات */
         .settings-panel {
             position: fixed;
             bottom: -100%;
             left: 50%;
             transform: translateX(-50%);
-            width: 300px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
+            width: 320px;
+            background: #ffffff; /* لون صلب */
             border-radius: 25px 25px 0 0;
             padding: 25px;
             z-index: 2100;
-            transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 -10px 40px rgba(0,0,0,0.7);
             text-align: right;
             color: #000;
@@ -98,7 +97,7 @@
         .settings-panel.active { bottom: 0; }
         .setting-item { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
 
-        /* Style for the switch (checkbox) */
+        /* Switch Style */
         .switch {
             position: relative;
             display: inline-block;
@@ -126,6 +125,7 @@
         input:checked + .slider { background-color: #2196F3; }
         input:checked + .slider:before { transform: translateX(20px); }
 
+        /* أزرار التنقل - تم إلغاء الجلاس */
         .nav-controls {
             position: fixed;
             top: 0;
@@ -140,26 +140,25 @@
             pointer-events: none;
         }
         .nav-btn {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.07);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: white;
-            font-size: 28px;
+            background: #ffffff; /* لون صلب */
+            color: #000000; /* نص أسود للوضوح */
+            font-size: 24px;
+            font-weight: bold;
             cursor: pointer;
             pointer-events: auto;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.2s ease;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: none;
         }
         .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1) translateZ(20px);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: #f0f0f0;
+            transform: scale(1.1);
         }
 
         .scene {
@@ -190,14 +189,12 @@
             left: 0;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            border-radius: 0;
-            overflow: hidden;
             background: #fff;
         }
         .page-face img { width: 100%; height: 100%; object-fit: fill; display: block; pointer-events: none; }
         .page-face.back {
             transform: rotateY(180deg);
-            background: linear-gradient(90deg, rgba(0,0,0,0.12), transparent 14%), #f8f7f3;
+            background: #f8f7f3;
         }
 
         .curl-lighting {
@@ -219,6 +216,7 @@
             pointer-events: none;
         }
 
+        /* Animations */
         @keyframes realisticFlip {
             0% { transform: rotateY(0deg); }
             18% { transform: rotateY(-22deg); }
@@ -262,7 +260,7 @@
 
         input[type="range"] { accent-color: #000; cursor: pointer; }
         .setting-item select {
-            width: 150px; padding: 9px 10px; border: 1px solid rgba(0, 0, 0, 0.14);
+            width: 150px; padding: 9px 10px; border: 1px solid #ddd;
             border-radius: 10px; background: #fff; color: #111; font: inherit; font-size: 13px;
         }
     </style>
@@ -271,14 +269,13 @@
 
     <div id="custom-cursor"></div>
 
-    <div class="settings-toggle" onclick="toggleSettings()">
+    <div class="settings-toggle" id="settingsToggle" onclick="toggleSettings(event)">
         <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.84,9.48l2.03,1.58C4.84,11.36,4.82,11.68,4.82,12c0,0.32,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z"/></svg>
     </div>
 
     <div class="settings-panel" id="settingsPanel">
         <h3 style="margin-bottom: 20px;">إعدادات العرض</h3>
         
-        <!-- خيار ملء الشاشة المضاف -->
         <div class="setting-item">
             <label>وضع ملء الشاشة</label>
             <label class="switch">
@@ -342,6 +339,9 @@
 
         const book = document.getElementById('myBook');
         const navControls = document.getElementById('navControls');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const settingsToggle = document.getElementById('settingsToggle');
+        
         let pages = [];
         let currentPage = 0;
         let pageAspectRatio = config.defaultAspectRatio;
@@ -349,17 +349,25 @@
         let isRewinding = false;
         let isAnimating = false;
 
-        function toggleSettings() {
-            document.getElementById('settingsPanel').classList.toggle('active');
+        // فتح/إغلاق الإعدادات
+        function toggleSettings(event) {
+            event.stopPropagation(); // منع وصول الحدث للـ document لكي لا يغلق فوراً
+            settingsPanel.classList.toggle('active');
         }
 
-        // وظيفة ملء الشاشة
+        // إغلاق اللوحة عند الضغط في أي مكان في الشاشة
+        document.addEventListener('click', (event) => {
+            // إذا كان الضغط خارج اللوحة وخارج زر الفتح، أغلق اللوحة
+            if (!settingsPanel.contains(event.target) && !settingsToggle.contains(event.target)) {
+                settingsPanel.classList.remove('active');
+            }
+        });
+
         function toggleFullScreen() {
             const isChecked = document.getElementById('fullscreenSwitch').checked;
             if (isChecked) {
                 if (!document.fullscreenElement) {
                     document.documentElement.requestFullscreen().catch(err => {
-                        alert(`خطأ في تفعيل ملء الشاشة: ${err.message}`);
                         document.getElementById('fullscreenSwitch').checked = false;
                     });
                 }
@@ -370,14 +378,9 @@
             }
         }
 
-        // تحديث حالة الزر إذا خرج المستخدم من ملء الشاشة عبر مفتاح Esc
         document.addEventListener('fullscreenchange', () => {
             const switchEl = document.getElementById('fullscreenSwitch');
-            if (!document.fullscreenElement) {
-                switchEl.checked = false;
-            } else {
-                switchEl.checked = true;
-            }
+            switchEl.checked = !!document.fullscreenElement;
         });
 
         function updateSpeed(val) {
